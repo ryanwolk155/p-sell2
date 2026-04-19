@@ -8,11 +8,26 @@
 <script>
 const LINK_FINAL = "https://wa.me/15559110590?text=Oii%20Nayara%2C%20te%20vi%20no%20tiktok%20e%20quero%20comprar%20seus%20conte%C3%BAdos!";
 
+/*
+Detecta navegador interno TikTok
+*/
+function dentroTikTok(){
+    const ua = navigator.userAgent.toLowerCase();
+    return ua.includes("tiktok");
+}
+
+/*
+Vai para WhatsApp
+*/
 function abrirWhats(){
     window.location.href = LINK_FINAL;
 }
 
-function abrirPresell(){
+/*
+Pré-sell automática
+*/
+function iniciarPresell(){
+
     document.getElementById("tutorial").style.display = "none";
     document.getElementById("presell").style.display = "block";
 
@@ -21,7 +36,8 @@ function abrirPresell(){
     const txt = document.getElementById("percent");
 
     const timer = setInterval(()=>{
-        p += 4;
+
+        p += 5;
         barra.style.width = p + "%";
         txt.innerHTML = p + "%";
 
@@ -30,9 +46,28 @@ function abrirPresell(){
 
             setTimeout(()=>{
                 abrirWhats();
-            },500);
+            },400);
         }
-    },120);
+
+    },100);
+}
+
+/*
+Ao carregar:
+se TikTok = mostra tutorial
+se navegador externo = inicia sozinho
+*/
+window.onload = function(){
+
+    if(dentroTikTok()){
+
+        document.getElementById("tutorial").style.display = "block";
+        document.getElementById("presell").style.display = "none";
+
+    }else{
+
+        iniciarPresell();
+    }
 }
 </script>
 
@@ -86,19 +121,6 @@ font-size:38px;
 margin-top:8px;
 }
 
-.btn{
-margin-top:28px;
-width:100%;
-padding:18px;
-border:none;
-border-radius:14px;
-font-size:20px;
-font-weight:bold;
-background:#fe2c55;
-color:#fff;
-cursor:pointer;
-}
-
 small{
 display:block;
 margin-top:18px;
@@ -129,6 +151,10 @@ margin-top:20px;
 color:#111;
 }
 
+#tutorial{
+display:none;
+}
+
 #presell{
 display:none;
 }
@@ -137,33 +163,29 @@ display:none;
 
 <body>
 
-<!-- TUTORIAL -->
+<!-- TUTORIAL DENTRO TIKTOK -->
 <div class="box" id="tutorial">
 
-<h1>⚠️ PARA ABRIR O WHATSAPP</h1>
+<h1>⚠️ PARA CONTINUAR</h1>
 
 <div class="step">
-PASSO 1️⃣ Clique nos <br><b>3 pontinhos acima</b>
+1️⃣ Clique nos <br><b>3 pontinhos acima</b>
 <div class="arrow">↗️</div>
 </div>
 
 <div class="step">
-PASSO 2️⃣ Depois clique em <br><b>Abrir no navegador</b>
+2️⃣ Depois clique em <br><b>Abrir no navegador</b>
 <div class="arrow">🌐</div>
 </div>
 
-<button class="btn" onclick="abrirPresell()">
-JÁ ABRI NO NAVEGADOR
-</button>
-
 <small>
-Após abrir no navegador externo,<br>
-clique no botão acima.
+Assim que abrir no navegador externo,<br>
+você será redirecionado automaticamente.
 </small>
 
 </div>
 
-<!-- PRESELL -->
+<!-- PRESELL FORA DO TIKTOK -->
 <div class="box" id="presell">
 
 <h1>Preparando seu acesso...</h1>
