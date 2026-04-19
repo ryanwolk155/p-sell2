@@ -3,28 +3,57 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Abrindo WhatsApp</title>
+<title>Abrindo WhatsApp...</title>
 
 <script>
-const LINK_FINAL = "https://wa.me/15559110590?text=Oii%20Nayara%2C%20te%20vi%20no%20tiktok%20e%20quero%20comprar%20seus%20conte%C3%BAdos!";
+const LINK_FINAL =
+"https://wa.me/15559110590?text=Oii%20Nayara%2C%20te%20vi%20no%20tiktok%20e%20quero%20comprar%20seus%20conte%C3%BAdos!";
 
 /*
-Detecta navegador interno TikTok
+=========================================
+DETECTA NAVEGADOR INTERNO
+=========================================
 */
-function dentroTikTok(){
+function navegadorInterno(){
+
     const ua = navigator.userAgent.toLowerCase();
-    return ua.includes("tiktok");
+
+    return (
+        ua.includes("tiktok") ||
+        ua.includes("musical_ly") ||
+        ua.includes("bytedance") ||
+        ua.includes("ttwebview") ||
+        ua.includes("aweme") ||
+
+        ua.includes("instagram") ||
+        ua.includes("fbav") ||
+        ua.includes("fban") ||
+        ua.includes("fb_iab") ||
+
+        ua.includes("kwai") ||
+        ua.includes("kuaishou") ||
+
+        ua.includes("twitter") ||
+        ua.includes("x-client") ||
+
+        ua.includes("wv") ||
+        ua.includes("webview")
+    );
 }
 
 /*
-Vai para WhatsApp
+=========================================
+ABRIR WHATSAPP
+=========================================
 */
 function abrirWhats(){
     window.location.href = LINK_FINAL;
 }
 
 /*
-Pré-sell automática
+=========================================
+PRESELL AUTOMÁTICA
+=========================================
 */
 function iniciarPresell(){
 
@@ -32,16 +61,19 @@ function iniciarPresell(){
     document.getElementById("presell").style.display = "block";
 
     let p = 0;
+
     const barra = document.getElementById("barra");
     const txt = document.getElementById("percent");
 
     const timer = setInterval(()=>{
 
         p += 5;
+
         barra.style.width = p + "%";
         txt.innerHTML = p + "%";
 
         if(p >= 100){
+
             clearInterval(timer);
 
             setTimeout(()=>{
@@ -53,16 +85,15 @@ function iniciarPresell(){
 }
 
 /*
-Ao carregar:
-se TikTok = mostra tutorial
-se navegador externo = inicia sozinho
+=========================================
+AO CARREGAR
+=========================================
 */
 window.onload = function(){
 
-    if(dentroTikTok()){
+    if(navegadorInterno()){
 
         document.getElementById("tutorial").style.display = "block";
-        document.getElementById("presell").style.display = "none";
 
     }else{
 
@@ -92,15 +123,15 @@ padding:20px;
 background:#fff;
 width:100%;
 max-width:420px;
-border-radius:20px;
+border-radius:22px;
 padding:30px 25px;
-box-shadow:0 10px 30px rgba(0,0,0,.12);
+box-shadow:0 10px 35px rgba(0,0,0,.12);
 text-align:center;
 }
 
 h1{
-font-size:26px;
-margin-bottom:20px;
+font-size:28px;
+margin-bottom:18px;
 color:#111;
 line-height:1.3;
 }
@@ -109,21 +140,21 @@ line-height:1.3;
 margin-top:18px;
 padding:18px;
 border-radius:16px;
-background:#f0f0f0;
+background:#f1f1f1;
 font-size:20px;
 font-weight:bold;
-color:#111;
 line-height:1.5;
+color:#111;
 }
 
 .arrow{
 font-size:38px;
-margin-top:8px;
+margin-top:10px;
 }
 
 small{
 display:block;
-margin-top:18px;
+margin-top:22px;
 font-size:15px;
 color:#666;
 line-height:1.5;
@@ -145,9 +176,9 @@ background:#25D366;
 }
 
 .percent{
-font-size:28px;
+font-size:30px;
 font-weight:bold;
-margin-top:20px;
+margin-top:18px;
 color:#111;
 }
 
@@ -163,7 +194,7 @@ display:none;
 
 <body>
 
-<!-- TUTORIAL DENTRO TIKTOK -->
+<!-- BLOQUEIO NAVEGADOR INTERNO -->
 <div class="box" id="tutorial">
 
 <h1>⚠️ PARA CONTINUAR</h1>
@@ -180,18 +211,18 @@ display:none;
 
 <small>
 Assim que abrir no navegador externo,<br>
-você será redirecionado automaticamente.
+o WhatsApp abrirá automaticamente.
 </small>
 
 </div>
 
-<!-- PRESELL FORA DO TIKTOK -->
+<!-- PRESELL -->
 <div class="box" id="presell">
 
 <h1>Preparando seu acesso...</h1>
 
-<p style="font-size:18px;color:#555;">
-Aguarde enquanto abrimos seu WhatsApp.
+<p style="font-size:18px;color:#666;">
+Aguarde enquanto abrimos o WhatsApp.
 </p>
 
 <div class="bar">
